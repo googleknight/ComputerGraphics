@@ -83,6 +83,9 @@
     <ClCompile Include="winthread.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Bresenham.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ComputerGraphics.rc">
