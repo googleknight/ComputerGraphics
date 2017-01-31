@@ -3,7 +3,7 @@
 #include<cstdlib>
 #include "graphics.h"
 using namespace std;
-void bres(int x1, int y1, int x2, int y2);
+void midpointline(int x1, int y1, int x2, int y2);
 int main()
 {
 	initwindow(400, 400);
@@ -12,13 +12,13 @@ int main()
 	cin >> x1 >> y1;
 	cout << "Enter final point:";
 	cin >> x2 >> y2;
-	bres(x1, y1, x2, y2);
+	midpointline(x1, y1, x2, y2);
 	while (!kbhit());
 	closegraph();
 	return 0;
 }
 
-void bres(int x1, int y1, int x2, int y2)
+void midpointline(int x1, int y1, int x2, int y2)
 {
 	int dx = x2 - x1;
 	int dy = y2 - y1;
