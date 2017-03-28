@@ -3,7 +3,7 @@
 #include<cstdlib>
 #include "graphics.h"
 using namespace std;
-void midpointline(int x1, int y1, int x2, int y2);
+void midpoint(int x1, int y1, int x2, int y2);
 int main()
 {
 	initwindow(400, 400);
@@ -12,19 +12,18 @@ int main()
 	cin >> x1 >> y1;
 	cout << "Enter final point:";
 	cin >> x2 >> y2;
-	midpointline(x1, y1, x2, y2);
+	midpoint(x1, y1, x2, y2);
 	while (!kbhit());
 	closegraph();
 	return 0;
 }
-
-void midpointline(int x1, int y1, int x2, int y2)
+void midpoint(int x1, int y1, int x2, int y2)
 {
 	int dx = x2 - x1;
 	int dy = y2 - y1;
 	putpixel(x1, y1, 10);
 	int f = dy- dx/2;
-	for (int k = 0, x = x1, y = y1; k<dx; k++, y++, x++)
+	for (int k = 0, x = x1, y = y1; k<dx; k++, x++)
 	{
 		if (f<0)
 		{
@@ -34,6 +33,7 @@ void midpointline(int x1, int y1, int x2, int y2)
 		else
 		{
 			putpixel(x + 1, y + 1, 10);
+			y++;
 			f = f + dy-dx;
 		}
 	}

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include<iostream>
 #include<cstdlib>
 #include "graphics.h"
@@ -31,7 +30,6 @@ void dda(int x1, int y1, int x2, int y2)
 {
 	int dx, dy;
 	double x, y, length, newdx, newdy;
-	moveto(x1, y1);
 	dx = x2 - x1;
 	dy = y2 - y1;
 	length = abs(dx) >= abs(dy) ? abs(dx) : abs(dy);
