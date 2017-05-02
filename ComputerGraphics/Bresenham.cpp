@@ -1,77 +1,89 @@
-	
 #include<iostream>
-#include<cstdlib>
-#include "graphics.h"
+#include"graphics.h"
 using namespace std;
-int sign(float x);
 void bres(int x1, int y1, int x2, int y2);
+void floodfill(int x, int y, int color, int backcolor)
+{
+	int region = getpixel(x, y);
+	if (region == backcolor)
+	{
+		putpixel(x, y, color);
+		floodfill(x + 1, y, color, backcolor);
+		floodfill(x - 1, y, color, backcolor);
+		floodfill(x, y + 1, color, backcolor);
+		floodfill(x, y - 1, color, backcolor);
+	}
+}
 int main()
 {
-	initwindow(400, 400);
+	initwindow(800, 800);
 	int x1, y1, x2, y2;
-	cout << "Enter initial point:";
-	cin >> x1 >> y1;
-	cout << "Enter final point:";
-	cin >> x2 >> y2;
-	bres(x1, y1, x2, y2);
+	bres(500, 320, 600, 220);//left
+	bres(600, 220, 700, 320);//right
+	bres(500, 320, 700, 320);//bottom
+	//floodfill(550, 310, 10, 0);
 	while (!kbhit());
 	closegraph();
 	return 0;
 }
 void bres(int x1, int y1, int x2, int y2)
 {
-	double dx = (x2 - x1);
-	double dy = (y2 - y1);
-	int x=x1, y=y1,i;
-	if ((dy / dx) < 0)
-		i = -1;
-	else
-		i = 1;
-	dx = abs(dx);
-	dy = abs(dy);
-	int p = 2 * dy - dx;
-	if (x1>x2)
+	double dx = x2 - x1,dy=y2-y1;
+	putpixel(x1, y1, 3);
+	putpixel(x2, y2, 3);
+	if (abs(dy / dx) < 1)
 	{
-		putpixel(x2, y2, 10);
-		x = x2;
-		y = y2;
+		double d = 2 * dy - dx;
+		int x = x1>x2?x2:x1;
+		int y = x1>x2?y2:y1;
+		int inc;
+		if ((dy / dx) < 0)
+			inc = -1;
+		else
+			inc = 1;
+		dx = abs(dx);
+		dy = abs(dy);
+		for (int i = 0; i <= dx; i++, x++)
+		{
+
+			if (d < 0)
+			{
+				putpixel(x + 1, y, 3);
+				d = d + 2 * dy;
+			}
+			else
+			{
+				putpixel(x + 1, y +inc, 3);
+				y+=inc;
+				d = d + 2 * (dy - dx);
+			}
+		}
 	}
 	else
 	{
-		putpixel(x1, y1, 10);
-		x = x1;
-		y = y1;
-	}	
-	cout << x << endl << y << endl;
-	if(dx>=dy)
-		for (int k = 0; k<dx; k++,x++)
+		double d = 2 * dx - dy;
+		int x = y1>y2 ? x2 : x1;
+		int y = y1>y2 ? y2 : y1;
+		int inc;
+		if ((dy / dx) < 0)
+			inc = -1;
+		else
+			inc = 1;
+		dx = abs(dx);
+		dy = abs(dy);
+		for (int i = 0; i <=dy; i++, y++)
 		{
-			if (p<0)
+			if (d < 0)
 			{
-				putpixel(x + 1, y, 10);
-				p = p + (2 * dy);
+				putpixel(x , y+1, 3);
+				d = d + 2 * dx;
 			}
 			else
 			{
-				putpixel(x + 1, y + i, 10);
-				y+=i;
-				p = p + (2 * dy) - (2 * dx);
+				putpixel(x + inc, y + 1, 3);
+				x+=inc;
+				d = d + 2 * (dx - dy);
 			}
 		}
-	else
-		for (int k = 0; k<dy; k++,y++)
-		{
-			if (p<0)
-			{
-				putpixel(x , y+1, 10);
-				p = p + (2 * dx);
-			}
-			else
-			{
-				putpixel(x + i, y + 1, 10);
-				x+=i;
-				p = p + (2 * dx) - (2 * dy);
-			}
-		}
-
+	}
 }
