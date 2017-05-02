@@ -14,3 +14,4 @@
 * [Rotate](http://shubhammathur.me/ComputerGraphics/ComputerGraphics/rotate.cpp)
 * [Translation](http://shubhammathur.me/ComputerGraphics/ComputerGraphics/Translation.cpp)
 * [Triangle](http://shubhammathur.me/ComputerGraphics/ComputerGraphics/Triangle.cpp)
+* [Clipping](http://shubhammathur.me/ComputerGraphics/ComputerGraphics/Clipping.cpp)
